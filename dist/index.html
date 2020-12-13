@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="css/main.css">
+	<script src="./js/app.js" defer></script>
+	<title>Music Player</title>
+</head>
+<body>
+	<div class="container">
+		<div class="player">
+			<audio id="music-player"></audio>
+			<div id='song-cover' class="song-cover"></div>
+			<div class="song-details">
+				<h3 class="song-title">Somebody New</h3>
+				<p class='sont-artist'>RYYZN</p>
+			</div>
+			<div class="player__controlls">
+				<button class="skip-btn" id="prev-btn">
+					<i class="fas fa-backward btn-icon"></i>
+				</button>
+				<button class="play-btn" id="play-btn">
+					<i class="fas fa-play btn-icon play-icon"></i>
+				</button>
+				<button class="skip-btn" id="next-btn">
+					<i class="fas fa-forward btn-icon"></i>
+				</button>
+			</div>
+			<div class="next">
+				<p>Next up: <span id="next-song">On and on ft. Daniel Levi by Cartoon</span></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
