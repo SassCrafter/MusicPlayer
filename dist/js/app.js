@@ -9,9 +9,17 @@ window.onload = () => {
 	const playBtnEl = document.getElementById('play-btn');
 	const playBtnIcon = document.querySelector('#play-btn .play-icon')
 	const nextBtnEl = document.getElementById('next-btn');
+	const volumeInput = document.getElementById('volume-input');
+
+	const songCurrentTimeEl = document.getElementById('song-current-time');
+	const songEndTimeEl = document.getElementById('song-end-time');
+	const songDurationRangeEl = document.getElementById('song-range')
+
 
 	let currentSong;
 	let nextSong;
+	let songDuration;
+
 
 	let songs = [
 		{
@@ -29,8 +37,18 @@ window.onload = () => {
 	];
 
 	playBtnEl.addEventListener('click', togglePlaySong);
+	nextBtnEl.addEventListener('click', changeSong);
+	prevBtnEl.addEventListener('click', () => {changeSong(false)});
+
+	volumeInput.addEventListener('mousemove', changeVolume);
+	volumeInput.addEventListener('input', changeVolume);
+
+	//songDurationRangeEl.addEventListener('mousemove', updateSongDuration);
+	songDurationRangeEl.addEventListener('input', updateSongDuration);
 
 	initPlayer();
+
+	setInterval(syncSongTime, 100);
 
 
 	function initPlayer() {
@@ -46,8 +64,27 @@ window.onload = () => {
 		songArtistEl.innerText = song.artist;
 
 		musicPlayerEl.src = song.songPath;
-
 		nextSongEL.innerText = songs[nextSong].title + 'by' + songs[nextSong].artist;
+		musicPlayerEl.onloadedmetadata = function() {
+			songDuration = (musicPlayerEl.duration / 60).toFixed(2);
+			updateSongDuration();
+			console.log(songDuration);
+		}
+	}
+
+	function updateSongDuration(e) {
+		songEndTimeEl.innerText = songDuration;
+		if (e !== undefined) {
+			const value = e.target.value;
+			const time = (songDuration / 100 * value).toFixed(2);
+		}
+	}
+
+	function syncSongTime() {
+		const currentTimePlaying = (musicPlayerEl.currentTime / 60).toFixed(2);
+		songCurrentTimeEl.innerText = currentTimePlaying;
+		songDurationRangeEl.value = currentTimePlaying * 60;
+		console.log(songDurationRangeEl.value)
 	}
 
 	function togglePlaySong() {
@@ -60,5 +97,36 @@ window.onload = () => {
 			playBtnIcon.classList.remove('fa-pause');
 			playBtnIcon.classList.add('fa-play');
 		}
+	}
+
+	function changeSong(next=true) {
+		if (next) {
+			currentSong++;
+			nextSong = currentSong +  1;
+			console.log(currentSong);
+			if (currentSong > songs.length - 1) {
+				currentSong = 0;
+				nextSong = currentSong +  1;
+			}
+			if (nextSong > songs.length - 1) {
+				nextSong = 0;
+			}
+		} else {
+			currentSong--;
+			nextSong = currentSong +  1;
+
+			if (currentSong < 0) {
+				currentSong = songs.length - 1;
+				nextSong = 0;
+			}
+		}
+		console.log(currentSong);
+		updatePlayer();
+		togglePlaySong();
+	}
+
+	function changeVolume() {
+		const volume = this.value;
+		musicPlayerEl.volume = volume;
 	}
 }

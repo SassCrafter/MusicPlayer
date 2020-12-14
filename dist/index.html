@@ -18,21 +18,33 @@
 	<div class="container">
 		<div class="player">
 			<audio id="music-player"></audio>
+			<div class="volume-container">
+					<label for="volume-input"><i class="fas fa-volume-off"></i></label>
+					<input type="range" id='volume-input' min='0' max='1' value='.7' step='0.01' class="volume-input">
+					<label for="volume-input"><i class="fas fa-volume-up"></i></label>
+				</div>
 			<div id='song-cover' class="song-cover"></div>
 			<div class="song-details">
 				<h3 class="song-title">Somebody New</h3>
 				<p class='sont-artist'>RYYZN</p>
 			</div>
+			<div class="song-duration">
+				<span id="song-current-time">0:00</span>
+				<span id="song-end-time">0:00</span>
+				<input type="range" id="song-range" value="0" min='0' max='100'>
+			</div>
 			<div class="player__controlls">
-				<button class="skip-btn" id="prev-btn">
-					<i class="fas fa-backward btn-icon"></i>
-				</button>
-				<button class="play-btn" id="play-btn">
-					<i class="fas fa-play btn-icon play-icon"></i>
-				</button>
-				<button class="skip-btn" id="next-btn">
-					<i class="fas fa-forward btn-icon"></i>
-				</button>
+				<div class="play-buttons">
+					<button class="skip-btn" id="prev-btn">
+						<i class="fas fa-backward btn-icon"></i>
+					</button>
+					<button class="play-btn" id="play-btn">
+						<i class="fas fa-play btn-icon play-icon"></i>
+					</button>
+					<button class="skip-btn" id="next-btn">
+						<i class="fas fa-forward btn-icon"></i>
+					</button>
+				</div>
 			</div>
 			<div class="next">
 				<p>Next up: <span id="next-song">On and on ft. Daniel Levi by Cartoon</span></p>

@@ -14,6 +14,7 @@ html {
 	--bg-color: white;
 	--text-color: #333;
 	--gray-color: #ccc;
+	--dark-gray: #777;
 	--play-btn-color: #FE4880;
 }
 
@@ -34,11 +35,29 @@ body {
 
 .player {
 	width: 100%;
-	padding: 9rem 3rem 3rem;
+	padding: 3rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+}
+
+.volume-container {
+	display: block;
+	width: 100%;
+	margin-bottom: 3rem;
+}
+.volume-container label i {
+	font-size: 2rem;
+	color: var(--gray-color);
+}
+
+.volume-input {
+	display: inline-block;
+	cursor: pointer;
+	margin: 0 2rem;
+	width: 60%;
+	color: var(--play-btn-color);
 }
 
 .song-cover {
@@ -68,16 +87,36 @@ body {
 	margin-bottom: 3rem;
 }
 
+.song-duration {
+	text-align: left;
+	margin-bottom: 2rem
+}
+
+.song-duration span:first-child::after {
+	content: '/';
+	margin-left: .5rem;
+}
+
+
 .song-title {
 	font-size: 2.5rem;
 	font-weight: 500;
 	letter-spacing: .3rem;
 }
 
+#song-range {
+	width: 100%;
+}
+
+
 .player__controlls {
+	margin-bottom: 3rem;
+}
+
+.play-buttons {
 	display: flex;
 	align-items: center;
-	margin-bottom: 3rem;
+	margin-bottom: 2rem;
 }
 
 
@@ -106,6 +145,7 @@ body {
 	border: none;
 	outline: none;
 	background: transparent;
+	cursor: pointer;
 }
 .skip-btn i {
 	font-size: 2.3rem;
